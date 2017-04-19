@@ -8,8 +8,9 @@
   /** @ngInject */
   function BlockModel() {
 
-    var Block = function(id) {
+    var Block = function(id, isSelected) {
       this.id = id || 0;
+      this.isSelected = false;
     }
 
     Block.prototype = {

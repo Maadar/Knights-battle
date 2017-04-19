@@ -30,9 +30,22 @@
     <!-- board -->
     <div class="parent-wrapper">
       <div class="parent">
-        <div ng-repeat="block in blocks track by $index" ng-click="check($index)" ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }" class="child">
-          <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
-            <img src="assets/blackHorse.png" alt="black horse" class="btn-draggable" ng-show="list1[$index].title" data-drag="{{list1[$index].drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+        <div ng-repeat="block in blocks track by $index"
+          ng-click="check($index)"
+          ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
+          class="child">
+          <div class="btn btn-droppable"
+            data-drop="true"
+            ng-model='list1'
+            jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback', onOut: 'outCallback'}">
+            <img src="assets/blackHorse.png"
+              alt="black horse"
+              class="btn-draggable"
+              ng-show="list1[$index].title"
+              data-drag="{{list1[$index].drag}}"
+              data-jqyoui-options="{revert: 'invalid'}"
+              ng-model="list1"
+              jqyoui-draggable="{index: {{$index}}, animate:true}">
           </div>
         </div>
       </div>
@@ -41,7 +54,7 @@
     <!-- horses -->
     <div class="container form-inline" style="text-align: center;">
       <div class="btn btn-droppable" ng-repeat="item in list2 track by $index" data-drop="true" ng-model='list2' jqyoui-droppable="{index: {{$index}} }">
-        <img src="{{item.url}}" alt="black horse" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true, onStart:'startCallback(item, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"
+        <img src="assets/blackHorse.png" alt="black horse" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}}, placeholder:true,animate:true, onStart:'startCallback(item, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"
           ng-hide="!item.title">
       </div>
     </div>
@@ -99,7 +112,6 @@
   <script src="app/index.module.js"></script>
   <script src="app/main/directive/js/white.horse.js"></script>
   <script src="app/main/directive/js/black.horse.js"></script>
-  <script src="app/main/services/getJson.service.js"></script>
   <script src="app/main/models/block.model.js"></script>
   <script src="app/main/controllers/main.controller.js"></script>
   <script src="app/index.run.js"></script>
