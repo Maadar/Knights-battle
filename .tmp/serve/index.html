@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>mainModule</title>
+  <title>Knight battle</title>
   <meta name="description" content="">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
   <meta name="viewport" content="width=device-width">
@@ -24,6 +24,28 @@
 </head>
 
 <body ng-app="mainModule" ng-controller="MainController">
+
+  <body>
+
+    <!-- board -->
+    <div class="parent-wrapper">
+      <div class="parent">
+        <div ng-repeat="block in blocks track by $index" ng-click="check($index)" ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }" class="child">
+          <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
+            <img src="assets/blackHorse.png" alt="black horse" class="btn-draggable" ng-show="list1[$index].title" data-drag="{{list1[$index].drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- horses -->
+    <div class="container form-inline" style="text-align: center;">
+      <div class="btn btn-droppable" ng-repeat="item in list2 track by $index" data-drop="true" ng-model='list2' jqyoui-droppable="{index: {{$index}} }">
+        <img src="{{item.url}}" alt="black horse" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true, onStart:'startCallback(item, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"
+          ng-hide="!item.title">
+      </div>
+    </div>
+  </body>
   <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -31,13 +53,32 @@
     <ul class="list">
       <li class="block" ng-repeat="block in blocks track by $index">{{block}}</li>
     </ul> -->
-  <div class="parent-wrapper">
-    <div class="parent">
-      <div ng-click="check($index)" ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }" class="child" ng-repeat="item in items track by $index">{{item}} {{$index}} {{item}}</div>
-    </div>
-  </div>
-  <!-- <white-horse id="1"></white-horse> -->
-  <!-- <black-horse id="1"></black-horse> -->
+  <!-- <div class="container">
+      <div class="row">
+        <div class="col-md-4 wrapper">
+
+          <div class="single-horse-wrapper">
+            <white-horse id="1"></white-horse>
+          </div>
+
+          <div class="single-horse-wrapper">
+            <black-horse id="1"></black-horse>
+          </div>
+          <button class="btn btn-success start-button">START</button>
+        </div>
+
+        <div class="col-md-8">
+          <div class="parent-wrapper">
+            <div class="parent">
+              <div ng-click="check($index)" ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }" class="child" ng-repeat="item in items track by $index">{{item}} {{$index}} {{item}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
   <!-- build:js(src) scripts/vendor.js -->
   <!-- bower:js -->
   <script src="../bower_components/jquery/dist/jquery.js"></script>

@@ -10,42 +10,70 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
-.horse {
-  width: 100px;
-}
+body {
+  background: #eeeeee;
+  .wrapper {
+    padding-top: 100px;
 
-.parent-wrapper {
-  height: 100%;
-  width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:50px;
-}
+    .single-horse-wrapper {
+      padding: 30px;
+      float: right;
+      border: 1px dashed #000000;
+      margin-left: 5px;
+    }
 
-.parent {
-  display: flex;
-  font-size: 10px;
-  flex-wrap: wrap;
-  margin: -10px 0 0 -10px;
-}
+    .horse {
+      width: 50px;
+      height: 50px;
+      z-index:10000;
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
-.child {
-  display: inline-block;
-  border:1px solid #000;
-  margin: 10px 0 0 10px;
-  flex-grow: 1;
-  height: 70px;
-  width: calc(100% * (1/7) - 10px - 1px);
-}
+    .start-button {
+      margin-top:20px;
+    }
+  }
 
-.oddBlock {
-  background: #66442e;
-  color:#FFFFFF;
-}
+  .parent-wrapper {
+    height: 100%;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+  }
 
-.evenBlock {
-  background: #f7ecca;
-  color:#000000;
+  .parent {
+    display: flex;
+    font-size: 10px;
+    flex-wrap: wrap;
+    margin: -10px 0 0 -10px;
+  }
+
+  .btn-droppable {
+    width:78px;
+    height:68px;
+  }
+
+  .child {
+    display: inline-block;
+    border: 1px solid #000;
+    margin: 10px 0 0 10px;
+    flex-grow: 1;
+    height: 70px;
+    width: calc(100% * (1/7) - 10px - 1px);
+  }
+
+  .oddBlock {
+    background: #66442e;
+    color: #FFFFFF;
+  }
+
+  .evenBlock {
+    background: #f7ecca;
+    color: #000000;
+  }
 }
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
