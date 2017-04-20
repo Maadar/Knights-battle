@@ -32,19 +32,23 @@
       $scope.list1 = $scope.list2;
       savedElements.push($scope.blocksList[0]);
     }
-
     $scope.startCallback = function(event, ui, title, index) {
-      console.log($scope.list1);
-      console.log(index);
-      console.log('You started draggin: ' + title.title);
+      console.log(event);
+      possibleJumps = [];
+      possibleJumps.push($scope.blocksList[index+9], $scope.blocksList[index+15]);
+      angular.forEach(possibleJumps, function(element) {
+        element.canJump = true;
+      });
+
+      console.log("movin", $scope.list1);
     };
 
     $scope.stopCallback = function(event, ui) {
       console.log('Why did you stop draggin me?');
     };
 
-    $scope.dragCallback = function(event, ui) {
-      console.log('hey, look I`m flying');
+    var possibleJumps = [];
+    $scope.dragCallback = function(event, ui, index) {
     };
 
     var savedElements = [];

@@ -31,7 +31,7 @@
       <div class="parent">
         <div ng-repeat="block in blocksList track by $index"
           ng-click="check($index)"
-          ng-class="{ 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
+          ng-class="{ 'canJump': block.canJump === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
           class="child">
           <div class="btn btn-droppable"
             ng-model='list1'
@@ -44,7 +44,7 @@
               data-drag="{{list1[$index].drag}}"
               data-jqyoui-options="{revert: 'invalid'}"
               ng-model="list1"
-              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback(list1[$index].title, $index)'}">
+              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback(list1[$index].title, $index)', onDrag: 'dragCallback($index)'}">
           </div>
         </div>
       </div>

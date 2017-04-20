@@ -26,36 +26,28 @@
 <body ng-app="mainModule" ng-controller="MainController">
 
   <body>
-
+    <button class="btn btn-success" ng-click="setHorses()">START</button>
     <!-- board -->
     <div class="parent-wrapper">
       <div class="parent">
-        <div ng-repeat="block in blocks track by $index"
+        <div ng-repeat="block in blocksList track by $index"
           ng-click="check($index)"
-          ng-class="{ 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
+          ng-class="{ 'canJump': block.canJump === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
           class="child">
           <div class="btn btn-droppable"
-            data-drop="true"
             ng-model='list1'
-            jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback', onOut: 'outCallback'}">
+            data-drop="block.isSelected"
+            data-drag="{{list1[$index].drag}}"
+            jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
             <img src="assets/blackHorse.png"
               alt="black horse"
-              class="btn-draggable"
               ng-show="list1[$index].title"
               data-drag="{{list1[$index].drag}}"
               data-jqyoui-options="{revert: 'invalid'}"
               ng-model="list1"
-              jqyoui-draggable="{index: {{$index}}, animate:true}">
+              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback(list1[$index].title, $index)', onDrag: 'dragCallback($index)'}">
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- horses -->
-    <div class="container form-inline" style="text-align: center;">
-      <div class="btn btn-droppable" ng-repeat="item in list2 track by $index" data-drop="true" ng-model='list2' jqyoui-droppable="{index: {{$index}} }">
-        <img src="assets/blackHorse.png" alt="black horse" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}}, placeholder:true,animate:true, onStart:'startCallback(item, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"
-          ng-hide="!item.title">
       </div>
     </div>
   </body>
