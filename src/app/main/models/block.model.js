@@ -10,7 +10,7 @@
 
     var Block = function(id, isSelected) {
       this.id = id || 0;
-      this.isSelected = false;
+      this.isSelected = true;
     }
 
     Block.prototype = {

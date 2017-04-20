@@ -8,37 +8,28 @@
   /** @ngInject */
   function MainController($scope, Block) {
     $scope.blocks = new Array(49);
-
+    $scope.blocksList = [];
     $scope.list1 = [];
-    angular.forEach($scope.images, function(val, key) {
-      $scope.list1.push({});
-    });
-      var blocksList = [];
-      for (let i=1; i<=$scope.blocks.length; i++) {
-        $scope.Block = new Block();
-        $scope.Block.setId(i-1);
-
-        blocksList.push($scope.Block);
-      };
-      console.log(blocksList);
-
-      $scope.check = function(index) {
-        angular.forEach(blocksList, function(block) {
-          if (block.id === index) {
-            console.log(block);
-          }
-        });
-      };
-
     $scope.list2 = [
-      { 'title': 'Horse1', 'drag': true }
+      { 'title': 'Horse1', 'drag': true, 'drop': true }
     ];
+
+    for (let i=1; i<=$scope.blocks.length; i++) {
+      $scope.Block = new Block();
+      $scope.Block.setId(i-1);
+      $scope.blocksList.push($scope.Block);
+    };
+    // $scope.check = function(index) {
+    //   angular.forEach($scope.blocksList, function(block) {
+    //     if (block.id === index) {
+    //       console.log(block);
+    //     }
+    //   });
+    // };
 
     $scope.startCallback = function(event, ui, title, index) {
       console.log(index);
       console.log('You started draggin: ' + title.title);
-      $scope.draggedTitle = title.title;
-      console.log($scope.draggedTitle);
     };
 
     $scope.stopCallback = function(event, ui) {
@@ -49,39 +40,37 @@
       console.log('hey, look I`m flying');
     };
 
+    var savedElements = [];
+    var newArr = [];
     $scope.dropCallback = function(event, ui, index) {
-      angular.forEach(blocksList, function(element) {
-        if (element.id === index) {
-          element.isSelected = true;
+      angular.forEach($scope.blocksList, function(element) {
+        if (index === element.id) {
+          savedElements.push(element);
+          if(savedElements.length > 2) {
+            savedElements.shift();
+          }
+        }
+      });
+
+      for (let i=0; i<$scope.blocksList.length; i++) {
+        if ($scope.blocksList[i] === savedElements[0] && savedElements.length > 1) {
+          $scope.blocksList[i].isSelected = false;
+        }
+      }
+
+    };
+
+    $scope.overCallback = function(event, ui, index) {
+      console.log('I`m over', index);
+      angular.forEach($scope.blocksList, function(element) {
+        if (index === element.id) {
           console.log(element);
         }
       });
-    };
-
-    $scope.overCallback = function(event, ui) {
-      console.log('Look, I`m over you');
     };
 
     $scope.outCallback = function(event, ui) {
       console.log('I`m not, hehe');
     };
   }
-  //   var blocksList = [];
-  //   $scope.items = new Array(49);
-  //
-  //   for (let i=1; i<=$scope.items.length; i++) {
-  //     $scope.Block = new Block();
-  //     $scope.Block.setId(i-1);
-  //
-  //     blocksList.push($scope.Block);
-  //   };
-  //   $scope.check = function(index) {
-  //     angular.forEach(blocksList, function(block) {
-  //       if (block.id === index) {
-  //         console.log(block);
-  //       }
-  //     });
-  //   };
-  //   console.log(blocksList);
-  // }
 })();
