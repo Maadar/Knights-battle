@@ -27,7 +27,14 @@
     //   });
     // };
 
+    //set horse position on start
+    $scope.setHorses = function() {
+      $scope.list1 = $scope.list2;
+      savedElements.push($scope.blocksList[0]);
+    }
+
     $scope.startCallback = function(event, ui, title, index) {
+      console.log($scope.list1);
       console.log(index);
       console.log('You started draggin: ' + title.title);
     };
@@ -44,7 +51,7 @@
     var newArr = [];
     $scope.dropCallback = function(event, ui, index) {
       angular.forEach($scope.blocksList, function(element) {
-        if (index === element.id) {
+        if (index === element.id && savedElements.indexOf(element) === -1) {
           savedElements.push(element);
           if(savedElements.length > 2) {
             savedElements.shift();

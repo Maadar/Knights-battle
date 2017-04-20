@@ -25,7 +25,7 @@
 <body ng-app="mainModule" ng-controller="MainController">
 
   <body>
-
+    <button class="btn btn-success" ng-click="setHorses()">START</button>
     <!-- board -->
     <div class="parent-wrapper">
       <div class="parent">
@@ -47,14 +47,6 @@
               jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback(list1[$index].title, $index)'}">
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- horses -->
-    <div class="container form-inline" style="text-align: center;">
-      <div class="btn btn-droppable" ng-repeat="item in list2 track by $index" ng-model='list2' jqyoui-droppable="{index: {{$index}} }">
-        <img src="assets/blackHorse.png" alt="black horse" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}}, placeholder:true,animate:true, onStart:'startCallback(item, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"
-          ng-hide="!item.title">
       </div>
     </div>
   </body>
