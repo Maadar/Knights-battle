@@ -8,9 +8,10 @@
   /** @ngInject */
   function BlockModel() {
 
-    var Block = function(id, isSelected) {
+    var Block = function(id, isSelected, canJump) {
       this.id = id || 0;
       this.isSelected = true;
+      this.canJump = false;
     }
 
     Block.prototype = {
