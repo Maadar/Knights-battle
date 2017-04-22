@@ -41,11 +41,13 @@
             jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
             <img src="assets/blackHorse.png"
               alt="black horse"
+              ng-mouseover="canJump($index)"
+              ng-mouseleave="cantJump($index)"
               ng-show="list1[$index].title"
               data-drag="{{list1[$index].drag}}"
               data-jqyoui-options="{revert: 'invalid'}"
               ng-model="list1"
-              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback(list1[$index].title, $index)', onDrag: 'dragCallback($index)'}">
+              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback($index)', onDrag: 'dragCallback($index)'}">
           </div>
         </div>
       </div>
