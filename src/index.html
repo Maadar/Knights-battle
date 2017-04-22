@@ -35,7 +35,7 @@
           class="child">
           <div class="btn btn-droppable"
             ng-model='list1'
-            data-drop="block.isSelected"
+            data-drop="block.isSelected && block.canJump"
             data-drag="{{list1[$index].drag}}"
             jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
             <img src="assets/blackHorse.png"
