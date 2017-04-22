@@ -31,11 +31,11 @@
       <div class="parent">
         <div ng-repeat="block in blocksList track by $index"
           ng-click="check($index)"
-          ng-class="{ 'canJump': block.canJump === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
+          ng-class="{ 'canJump': block.canJump === true && block.isSelected === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
           class="child">
           <div class="btn btn-droppable"
             ng-model='list1'
-            data-drop="block.isSelected"
+            data-drop="block.isSelected && block.canJump"
             data-drag="{{list1[$index].drag}}"
             jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
             <img src="assets/blackHorse.png"
