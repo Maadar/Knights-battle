@@ -4,8 +4,8 @@
   angular
     .module('mainModule',
       [
-        'ngResource',
-        'ngDragDrop'
+        'ngDragDrop',
+        'underscore'
       ]
     );
 })();
