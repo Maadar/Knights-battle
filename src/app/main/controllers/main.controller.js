@@ -11,9 +11,28 @@
     $scope.blocks = new Array(49);
     $scope.blocksList = [];
     $scope.list1 = [];
-    $scope.horses = [
-      { 'title': 'Horse1', 'drag': true, 'drop': true }
-    ];
+    $scope.horses = [];
+
+    for (let i=0; i < 49; i++) {
+      if (i === 0) {
+        $scope.horses.push({
+          'title': 'Horse1',
+          'black': true,
+          'drag': true,
+          'move': true
+        });
+      } else if (i === 48) {
+        $scope.horses.push({
+          'title': 'Horse2',
+          'white': true,
+          'drag': true,
+          'move': true
+        });
+      } else {
+        $scope.horses.push({'move': true});
+      }
+    }
+
 
     for (let i=1; i<=$scope.blocks.length; i++) {
       $scope.Block = new Block();
