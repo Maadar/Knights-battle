@@ -23,13 +23,11 @@
     //set horse position on start
     $scope.setHorses = function() {
       $scope.list1 = $scope.horses;
-      savedElements.push($scope.blocksList[0]);
     }
 
     $scope.canJump = function(index) {
-      $scope.Block.setData(index, $scope.blocksList);
-      $scope.Block.displayMinusMoves();
-      console.log(this.Block);
+      $scope.Block.setData(index, $scope.blocksList, $scope.blocksList[index]);
+      $scope.Block.negative();
     }
 
     $scope.cantJump = function(index) {
@@ -46,24 +44,9 @@
       console.log('Why did you stop draggin me?');
     };
 
-    var savedElements = [];
-    var newArr = [];
     $scope.dropCallback = function(event, ui, index) {
       console.log("drop");
-      // angular.forEach($scope.blocksList, function(element) {
-      //   if (index === element.id && savedElements.indexOf(element) === -1) {
-      //     savedElements.push(element);
-      //     if(savedElements.length > 2) {
-      //       savedElements.shift();
-      //     }
-      //   }
-      // });
-      //
-      // for (let i=0; i<$scope.blocksList.length; i++) {
-      //   if ($scope.blocksList[i] === savedElements[0] && savedElements.length > 1) {
-      //     $scope.blocksList[i].isSelected = false;
-      //   }
-      // }
+      $scope.Block.disableBlock();
     };
 
     $scope.overCallback = function(event, ui, index) {

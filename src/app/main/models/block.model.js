@@ -11,12 +11,14 @@
     var Block = function(isSelected, canJump) {
       this.isSelected = true;
       this.canJump = false;
+      this.history;
     }
 
     Block.prototype = {
-      setData: function(index, blocksList) {
+      setData: function(index, blocksList, history) {
         this.index = index;
         this.blocksList = blocksList;
+        this.history = history;
       },
 
       modify: function(possibleJumps) {
@@ -35,7 +37,7 @@
         return this.possibleJumps;
       },
 
-      displayPlusMoves: function() {
+      positive: function() {
         this.possibleJumps = [];
         var plusPositions = {
           "5":  [2,3,4,5,6,9,10,11,12,13,16,17,18,19,20,23,24,25,26,27,30,31,32,33,34,37,38,39,40,41],
@@ -46,15 +48,19 @@
         this.modify(this.addPossibleJumps(plusPositions));
       },
 
-      displayMinusMoves: function() {
+      negative: function() {
         var minusPositions = {
           "-15": [15,16,17,18,19,20,22,23,24,25,26,27,29,30,31,32,33,34,36,37,38,39,40,41,43,44,45,46,47,48],
           "-13": [14,15,16,17,18,19,21,22,23,24,25,26,28,29,30,31,32,33,35,36,37,38,39,40,42,43,44,45,46,47],
           "-9":  [9,10,11,12,13,16,17,18,19,20,23,24,25,26,27,30,31,32,33,34,37,38,39,40,41,44,45,46,47,48],
           "-5":  [7,8,9,10,11,14,15,16,17,18,21,22,23,24,25,28,29,30,31,32,35,36,37,38,39,42,43,44,45,46]
         };
-        this.displayPlusMoves();
+        this.positive();
         this.modify(this.addPossibleJumps(minusPositions));
+      },
+
+      disableBlock: function() {
+        this.history.isSelected = false;
       }
 
     };
