@@ -48,27 +48,28 @@ body {
       font-weight: 700;
     }
 
-    .first-player {
-      float: left;
-      margin:20px;
-    }
+    form {
+      margin-top:50px;
+      .first-player {
+        margin:20px;
+      }
 
-    .second-player {
-      float: right;
-      margin:20px;
-    }
-    input {
-      width:250px;
-      height:40px;
-      padding-left:10px;
-      outline:none;
-      border:none;
-      border-bottom:2px solid black;
-      margin-bottom:10px;
-      background: transparent;
-      &:focus {
-        border-radius:10px;
-        background: white;
+      .second-player {
+        margin:20px;
+      }
+      input {
+        width:250px;
+        height:40px;
+        padding-left:10px;
+        outline:none;
+        border:none;
+        border-bottom:2px solid black;
+        margin-bottom:10px;
+        background: transparent;
+        &:focus {
+          border-radius:10px;
+          background: white;
+        }
       }
     }
     .start-button {
@@ -88,8 +89,24 @@ body {
       &:hover {
         background:white;
         color:black;
+        border:none;
       }
     }
+  }
+  .ingame-wrapper {
+    padding:30px 50px;
+    .first-player-ingame {
+      float:right;
+    }
+
+    .second-player-ingame {
+      float:left;
+    }
+  }
+
+  .nickname {
+    text-transform: uppercase;
+    font-weight: 700;
   }
 
   .parent-wrapper {
@@ -138,6 +155,11 @@ body {
   .canJump {
     background: green;
   }
+
+  .turn {
+    background: yellow;
+  }
+
 }
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

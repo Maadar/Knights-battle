@@ -9,27 +9,31 @@
   function MainController($scope, Block, _) {
 
     $scope.blocks = new Array(49);
-    $scope.blocksList = [], $scope.list1 = [], $scope.horses = [], $scope.displayBoard = false;
+    $scope.blocksList = [];
+    $scope.list1 = [];
+    $scope.horses = [];
+    $scope.displayBoard = false;
+    $scope.setHorses = function(form1, form2) {
 
-    for (let i = 0; i < 49; i++) {
-      if (i === 0) {
-        $scope.horses.push({ 'title': 'Horse1', 'drag': true, 'move': true });
-      } else if (i === 48) {
-        $scope.horses.push({ 'title': 'Horse2', 'drag': true, 'move': true });
-      } else {
-        $scope.horses.push({'move': true});
+      if (form1.$valid && form2.$valid && form1.$modelValue !== form2.$modelValue) {
+        for (let i = 0; i < 49; i++) {
+          if (i === 0) {
+            $scope.horses.push({ 'title': form1.$modelValue, 'drag': true, 'move': true });
+          } else if (i === 48) {
+            $scope.horses.push({ 'title': form2.$modelValue, 'drag': true, 'move': false });
+          } else {
+            $scope.horses.push({'move': true});
+          }
+        }
+
+        for (let i = 1; i <= $scope.blocks.length; i++) {
+          $scope.Block = new Block();
+          $scope.blocksList.push($scope.Block);
+        };
+
+        $scope.displayBoard = true;
+        $scope.list1 = $scope.horses;
       }
-    }
-
-    for (let i = 1; i <= $scope.blocks.length; i++) {
-      $scope.Block = new Block();
-      $scope.blocksList.push($scope.Block);
-    };
-
-    //set horse position on start
-    $scope.setHorses = function() {
-      $scope.displayBoard = true;
-      $scope.list1 = $scope.horses;
     }
 
     $scope.canJump = function(index) {
