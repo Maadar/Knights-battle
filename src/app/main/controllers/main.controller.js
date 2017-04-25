@@ -9,32 +9,19 @@
   function MainController($scope, Block, _) {
 
     $scope.blocks = new Array(49);
-    $scope.blocksList = [];
-    $scope.list1 = [];
-    $scope.horses = [];
+    $scope.blocksList = [], $scope.list1 = [], $scope.horses = [];
 
-    for (let i=0; i < 49; i++) {
+    for (let i = 0; i < 49; i++) {
       if (i === 0) {
-        $scope.horses.push({
-          'title': 'Horse1',
-          'black': true,
-          'drag': true,
-          'move': true
-        });
+        $scope.horses.push({ 'title': 'Horse1', 'drag': true, 'move': true });
       } else if (i === 48) {
-        $scope.horses.push({
-          'title': 'Horse2',
-          'white': true,
-          'drag': true,
-          'move': true
-        });
+        $scope.horses.push({ 'title': 'Horse2', 'drag': true, 'move': true });
       } else {
         $scope.horses.push({'move': true});
       }
     }
 
-
-    for (let i=1; i<=$scope.blocks.length; i++) {
+    for (let i = 1; i <= $scope.blocks.length; i++) {
       $scope.Block = new Block();
       $scope.blocksList.push($scope.Block);
     };
@@ -45,8 +32,10 @@
     }
 
     $scope.canJump = function(index) {
-      $scope.Block.setData(index, $scope.blocksList, $scope.blocksList[index]);
-      $scope.Block.negative();
+      if ($scope.horses[index].move === true) {
+        $scope.Block.setData(index, $scope.blocksList, $scope.blocksList[index]);
+        $scope.Block.negative();
+      }
     }
 
     $scope.cantJump = function(index) {
@@ -64,8 +53,12 @@
     };
 
     $scope.dropCallback = function(event, ui, index) {
-      console.log("drop");
       $scope.Block.disableBlock();
+
+      angular.forEach($scope.list1, function(element) {
+        element.move = true;
+      });
+      $scope.list1[index].move = false;
     };
 
     $scope.overCallback = function(event, ui, index) {

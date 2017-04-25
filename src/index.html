@@ -32,10 +32,15 @@
         <div ng-repeat="block in blocksList track by $index" ng-click="check($index)" ng-class="{ 'canJump': block.canJump === true && block.isSelected === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
           class="child">
           <div class="btn btn-droppable" ng-model='list1' data-drop="block.isSelected && block.canJump" data-drag="{{list1[$index].drag}}" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
-            <img ng-if="list1[$index].black" src="assets/blackHorse.png" alt="black horse" ng-mouseover="canJump($index)" ng-mouseleave="cantJump($index)" ng-show="list1[$index].title" data-drag="{{list1[$index].move}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1"
-              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback($index)'}">
-            <img ng-if="list1[$index].white" src="assets/whiteHorse.png" alt="black horse" ng-mouseover="canJump($index)" ng-mouseleave="cantJump($index)" ng-show="list1[$index].title" data-drag="{{list1[$index].move}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1"
-              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback($index)'}">
+            <img src="assets/blackHorse.png"
+              alt="black horse"
+              ng-mouseover="canJump($index)"
+              ng-mouseleave="cantJump($index)"
+              ng-show="list1[$index].title"
+              data-drag="list1[$index].move"
+              data-jqyoui-options="{revert: 'invalid'}"
+              ng-model="list1"
+              jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback($index)', onDrop:'dropCallback($index)'}">
           </div>
         </div>
       </div>
