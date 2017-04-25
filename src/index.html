@@ -25,13 +25,33 @@
 <body ng-app="mainModule" ng-controller="MainController">
 
   <body>
-    <button class="btn btn-success" ng-click="setHorses()">START</button>
+    <div class="left-side">
+      <div class="text-center">
+        <h1>Knights Battle</h1>
+        <form name="form" novalidate>
+          <div class="first-player">
+            <input name="firstPlayer" type="text" placeholder="First player..." ng-model="firstPlayer" required="true">
+            <div ng-show="form.firstPlayer.$touched">
+              <span class="error" ng-show="form.firstPlayer.$error.required">Podaj nick pierwszego gracza</span>
+            </div>
+          </div>
+          <div class="second-player">
+            <input name="secondPlayer" type="text" placeholder="Second player..." ng-model="secondPlayer" required="true">
+            <div ng-show="form.secondPlayer.$touched">
+              <span class="error" ng-show="form.secondPlayer.$error.required">Podaj nick drugiego gracza</span>
+              <div class="error" ng-show="secondPlayer == firstPlayer">Nazwy nie mogą się powtarzać</div>
+            </div>
+          </div>
+        </form>
+        <button class="start-button" ng-click="setHorses()">START</button>
+      </div>
+    </div>
     <!-- board -->
     <div class="parent-wrapper">
       <div class="parent">
         <div ng-repeat="block in blocksList track by $index" ng-click="check($index)" ng-class="{ 'canJump': block.canJump === true && block.isSelected === true, 'disalbedBlock': block.isSelected === false, 'oddBlock': ($index % 2 === 0), 'evenBlock': ($index % 2 !== 0) }"
           class="child">
-          <div class="btn btn-droppable" ng-model='list1' data-drop="block.isSelected && block.canJump" data-drag="{{list1[$index].drag}}" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
+          <div ng-if="displayBoard" class="btn btn-droppable" ng-model='list1' data-drop="block.isSelected && block.canJump" data-drag="{{list1[$index].drag}}" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
             <img src="assets/blackHorse.png"
               alt="black horse"
               ng-mouseover="canJump($index)"

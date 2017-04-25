@@ -11,8 +11,9 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // endbower
 
 body {
-  background: #eeeeee;
-  .wrapper {
+  background-image: url("background.jpg");
+  background-size:100% auto;
+    .wrapper {
     padding-top: 100px;
 
     .single-horse-wrapper {
@@ -30,18 +31,73 @@ body {
         cursor: pointer;
       }
     }
+  }
 
+  .left-side {
+    transform:translate(0%,20%);
+    vertical-align: middle;
+    margin:30px 30px;
+    width:45%;
+    height:400px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border:1px dashed black;
+    float:left;
+
+    .error {
+      color:#b51212;
+      font-weight: 700;
+    }
+
+    .first-player {
+      float: left;
+      margin:20px;
+    }
+
+    .second-player {
+      float: right;
+      margin:20px;
+    }
+    input {
+      width:250px;
+      height:40px;
+      padding-left:10px;
+      outline:none;
+      border:none;
+      border-bottom:2px solid black;
+      margin-bottom:10px;
+      background: transparent;
+      &:focus {
+        border-radius:10px;
+        background: white;
+      }
+    }
     .start-button {
-      margin-top:20px;
+      position:fixed;
+      bottom:0;
+      left:0;
+      transform:translate(20%);
+      margin-bottom:20px;
+      width:70%;
+      height:90px;
+      font-size:50px;
+      letter-spacing: 5px;
+      background:transparent;
+      outline:none;
+      border:2px dashed black;
+      transition:0.2s;
+      &:hover {
+        background:white;
+        color:black;
+      }
     }
   }
 
   .parent-wrapper {
     height: 100%;
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
+    width: 45%;
+    margin-right: 50px;
+    margin-top: 30px;
+    float:right;
   }
 
   .parent {

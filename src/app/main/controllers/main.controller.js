@@ -9,7 +9,7 @@
   function MainController($scope, Block, _) {
 
     $scope.blocks = new Array(49);
-    $scope.blocksList = [], $scope.list1 = [], $scope.horses = [];
+    $scope.blocksList = [], $scope.list1 = [], $scope.horses = [], $scope.displayBoard = false;
 
     for (let i = 0; i < 49; i++) {
       if (i === 0) {
@@ -28,6 +28,7 @@
 
     //set horse position on start
     $scope.setHorses = function() {
+      $scope.displayBoard = true;
       $scope.list1 = $scope.horses;
     }
 
