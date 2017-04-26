@@ -11,7 +11,6 @@
     var Block = function(isSelected, canJump) {
       this.isSelected = true;
       this.canJump = false;
-      this.history;
     }
 
     Block.prototype = {
@@ -31,7 +30,10 @@
         for (let key in data) {
           if (data[key].indexOf(this.index) !== -1) {
             var intKey = parseInt(key);
-            this.possibleJumps.push(this.blocksList[this.index+(intKey)]);
+            if (this.blocksList[this.index+(intKey)].isSelected === true
+              && this.blocksList[this.index+(intKey)].name === undefined) {
+              this.possibleJumps.push(this.blocksList[this.index+(intKey)]);
+            }
           }
         }
         return this.possibleJumps;
@@ -57,6 +59,7 @@
         };
         this.positive();
         this.modify(this.addPossibleJumps(minusPositions));
+        console.log(this.possibleJumps);
       },
 
       disableBlock: function() {

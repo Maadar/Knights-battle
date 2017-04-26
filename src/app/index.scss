@@ -72,6 +72,7 @@ body {
         }
       }
     }
+
     .start-button {
       position:fixed;
       bottom:0;
@@ -95,12 +96,12 @@ body {
   }
   .ingame-wrapper {
     padding:30px 50px;
-    .first-player-ingame {
-      float:right;
-    }
-
-    .second-player-ingame {
-      float:left;
+    .your-turn {
+      .player {
+        border-bottom:3px solid yellow;
+        padding:10px;
+        font-size:30px;
+      }
     }
   }
 

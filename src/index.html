@@ -47,11 +47,13 @@
 
         </form>
 
-        <div class="ingame-wrapper" ng-show="displayBoard" ng-repeat="item in horses track by $index" ng-if="item.title">
-
-          <h3>Player</h3><h3 class="nickname" ng-class="{'turn': item.title && item.move}">{{item.title}}</h3>
-
+        <div class="ingame-wrapper" ng-show="displayBoard" ng-repeat="item in horses" ng-if="item.name">
+          <span ng-class="{'your-turn': item.name && item.move}">
+            <span class="player">Player {{item.name}}</span>
+          </span>
         </div>
+
+        <h1>{{gameOverAlert}}</h1>
 
       </div>
     </div>
@@ -60,21 +62,21 @@
     <div class="parent-wrapper">
       <div class="parent">
         <div ng-repeat="block in blocksList track by $index" ng-click="check($index)"
-          ng-class="{ 'turn': horses[$index].title && list1[$index].move,
+          ng-class="{ 'turn': horses[$index].name && container[$index].move,
           'canJump': block.canJump === true && block.isSelected === true,
           'disalbedBlock': block.isSelected === false,
           'oddBlock': ($index % 2 === 0),
           'evenBlock': ($index % 2 !== 0) }"
           class="child">
-          <div ng-if="displayBoard" class="btn btn-droppable" ng-model='list1' data-drop="block.isSelected && block.canJump" data-drag="{{list1[$index].drag}}" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)',onOver: 'overCallback($index)', onOut: 'outCallback'}">
+          <div ng-if="displayBoard" class="btn btn-droppable" ng-model='container' data-drop="block.isSelected && block.canJump" data-drag="{{container[$index].drag}}" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback($index)'}">
             <img src="assets/blackHorse.png"
               alt="black horse"
               ng-mouseover="canJump($index)"
               ng-mouseleave="cantJump($index)"
-              ng-show="list1[$index].title"
-              data-drag="list1[$index].move"
+              ng-show="container[$index].name"
+              data-drag="container[$index].move"
               data-jqyoui-options="{revert: 'invalid'}"
-              ng-model="list1"
+              ng-model="container"
               jqyoui-draggable="{index: {{$index}}, animate:true, onStart:'startCallback($index)', onDrop:'dropCallback($index)'}">
           </div>
         </div>
