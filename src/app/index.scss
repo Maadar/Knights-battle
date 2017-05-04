@@ -13,24 +13,57 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 body {
   background-image: url("background.jpg");
   background-size:100% auto;
-    .wrapper {
-    padding-top: 100px;
+  .parent-wrapper {
+    height: 100%;
+    width: 45%;
+    margin-right: 50px;
+    margin-top: 30px;
+    float:right;
 
-    .single-horse-wrapper {
-      padding: 30px;
-      float: right;
-      border: 1px dashed #000000;
-      margin-left: 5px;
-    }
+    .parent {
+      display: flex;
+      font-size: 10px;
+      flex-wrap: wrap;
+      margin: -10px 0 0 -10px;
 
-    .horse {
-      width: 50px;
-      height: 50px;
-      z-index:10000;
-      &:hover {
-        cursor: pointer;
+      .child {
+        display: inline-block;
+        border: 1px solid #000;
+        margin: 10px 0 0 10px;
+        flex-grow: 1;
+        height: 70px;
+        width: calc(100% * (1/7) - 10px - 1px);
+
+        .btn-droppable {
+          width:78px;
+          height:68px;
+        }
+
       }
+
+      .oddBlock {
+        background: #66442e;
+        color: #FFFFFF;
+      }
+
+      .evenBlock {
+        background: #f7ecca;
+      }
+
+      .disalbedBlock {
+        background:grey;
+      }
+
+      .canJump {
+        background: green;
+      }
+
+      .turn {
+        background: yellow;
+      }
+
     }
+
   }
 
   .left-side {
@@ -43,18 +76,21 @@ body {
     border:1px dashed black;
     float:left;
 
-    .error {
-      color:#b51212;
-      font-weight: 700;
-    }
-
     form {
       margin-top:50px;
       .first-player {
+        .error {
+          color:#b51212;
+          font-weight: 700;
+        }
         margin:20px;
       }
 
       .second-player {
+        .error {
+          color:#b51212;
+          font-weight: 700;
+        }
         margin:20px;
       }
       input {
@@ -71,26 +107,26 @@ body {
           background: white;
         }
       }
-    }
 
-    .start-button {
-      position:fixed;
-      bottom:0;
-      left:0;
-      transform:translate(20%);
-      margin-bottom:20px;
-      width:70%;
-      height:90px;
-      font-size:50px;
-      letter-spacing: 5px;
-      background:transparent;
-      outline:none;
-      border:2px dashed black;
-      transition:0.2s;
-      &:hover {
-        background:white;
-        color:black;
-        border:none;
+      .start-button {
+        position:fixed;
+        bottom:0;
+        left:0;
+        transform:translate(20%);
+        margin-bottom:20px;
+        width:70%;
+        height:90px;
+        font-size:50px;
+        letter-spacing: 5px;
+        background:transparent;
+        outline:none;
+        border:2px dashed black;
+        transition:0.2s;
+        &:hover {
+          background:white;
+          color:black;
+          border:none;
+        }
       }
     }
   }
@@ -103,62 +139,6 @@ body {
         font-size:30px;
       }
     }
-  }
-
-  .nickname {
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .parent-wrapper {
-    height: 100%;
-    width: 45%;
-    margin-right: 50px;
-    margin-top: 30px;
-    float:right;
-  }
-
-  .parent {
-    display: flex;
-    font-size: 10px;
-    flex-wrap: wrap;
-    margin: -10px 0 0 -10px;
-  }
-
-  .btn-droppable {
-    width:78px;
-    height:68px;
-  }
-
-  .child {
-    display: inline-block;
-    border: 1px solid #000;
-    margin: 10px 0 0 10px;
-    flex-grow: 1;
-    height: 70px;
-    width: calc(100% * (1/7) - 10px - 1px);
-  }
-
-  .oddBlock {
-    background: #66442e;
-    color: #FFFFFF;
-  }
-
-  .evenBlock {
-    background: #f7ecca;
-    color: #000000;
-  }
-
-  .disalbedBlock {
-    background:grey;
-  }
-
-  .canJump {
-    background: green;
-  }
-
-  .turn {
-    background: yellow;
   }
 
 }

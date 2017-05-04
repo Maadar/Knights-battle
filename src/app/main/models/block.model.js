@@ -59,7 +59,6 @@
         };
         this.positive();
         this.modify(this.addPossibleJumps(minusPositions));
-        console.log(this.possibleJumps);
       },
 
       disableBlock: function() {

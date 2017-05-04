@@ -37,7 +37,6 @@
     }
 
     $scope.canJump = function(index) {
-      console.log($scope.container[index]);
       if (this.Block.possibleJumps == 0) {
         $scope.horses[index].lose = true;
         $scope.gameOverAlert = "Player " + $scope.horses[index].name + " lost";
@@ -55,10 +54,6 @@
         element.canJump = false;
       });
     }
-
-    $scope.startCallback = function(event, ui, index) {
-      console.log("movin", $scope.container);
-    };
 
     $scope.dropCallback = function(event, ui, index) {
       $scope.Block.disableBlock();
